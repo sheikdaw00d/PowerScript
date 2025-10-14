@@ -1,5 +1,11 @@
-# SHEIKLAB - Installer v2.0 (PowerShell Edition)
-$host.UI.RawUI.WindowTitle = "SHEIKLAB - Installer v2.0"
+<#
+  Teknarch Endpoint Deployment — Powered by SHEIKLAB
+  Version: 3.1
+  Author: Sheik Dawood
+  Description: Modular, OEM-aware endpoint deployment script for Technarch clients across the United Arab Emirates.
+  Last Updated: 2025-10-14
+#>
+$host.UI.RawUI.WindowTitle = "Teknarch Endpoint Deployment — Powered by SHEIKLAB"
 Write-Host "=======================================================================" -ForegroundColor Green
 Write-Host "  ######  ##     ## ######## #### ##    ## ##          ###    ########"
 Write-Host " ##    ## ##     ## ##        ##  ##   ##  ##         ## ##   ##     ##"
@@ -10,12 +16,12 @@ Write-Host " ##    ## ##     ## ##        ##  ##   ##  ##       ##     ## ##    
 Write-Host "  ######  ##     ## ######## #### ##    ## ######## ##     ## ########"
 Write-Host "=======================================================================" -ForegroundColor Green
 Write-Host ""
-Write-Host "WELCOME MR. SHEIK" -ForegroundColor Cyan
+Write-Host "WELCOME MR. SHEIK DAWOOD" -ForegroundColor Cyan
 Start-Sleep -Seconds 5
 
 # Setup begins
-$logPath = "$env:TEMP\TechnarchInstallLog.txt"
-"Technarch Setup Log - $(Get-Date)" | Out-File $logPath
+$logPath = "$env:TEMP\TeknarchInstallLog.txt"
+"Teknarch Setup Log - $(Get-Date)" | Out-File $logPath
 
 # Admin check
 if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
@@ -114,4 +120,5 @@ foreach ($app in $apps) {
 Write-Host ""
 Write-Host "All installations attempted." -ForegroundColor Cyan
 Pause
+
 
