@@ -23,6 +23,25 @@ Start-Sleep -Seconds 5
 $logPath = "$env:TEMP\TeknarchInstallLog.txt"
 "Teknarch Setup Log - $(Get-Date)" | Out-File $logPath
 
+# System Info Logging
+$pcName   = $env:COMPUTERNAME
+$userName = $env:USERNAME
+$model    = (Get-WmiObject -Class Win32_ComputerSystem).Model
+$ramGB    = [math]::Round((Get-WmiObject -Class Win32_ComputerSystem).TotalPhysicalMemory / 1GB, 2)
+$cpu      = (Get-WmiObject -Class Win32_Processor).Name
+$gpu      = (Get-WmiObject -Class Win32_VideoController)[0].Name
+
+@"
+System Info:
+PC Name     : $pcName
+Username    : $userName
+Model       : $model
+RAM         : $ramGB GB
+CPU         : $cpu
+GPU         : $gpu
+"@ | Out-File $logPath -Append
+
+
 # Admin check
 if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
     Write-Warning "Please run this script as Administrator!"
@@ -120,5 +139,6 @@ foreach ($app in $apps) {
 Write-Host ""
 Write-Host "All installations attempted." -ForegroundColor Cyan
 Pause
+
 
 
