@@ -61,7 +61,8 @@ if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 function Install-App ($Id, $Name) {
     Write-Host "Installing $Name ..." -ForegroundColor Yellow
     winget install --id $Id -e --accept-source-agreements --accept-package-agreements
-    "$Name: $([bool]($LASTEXITCODE -eq 0) ? 'Success' : 'Failed')" | Out-File $logPath -Append
+    $installStatus = if ($LASTEXITCODE -eq 0) { "Success" } else { "Failed" }
+    "$Name: $installStatus" | Out-File $logPath -Append
     Write-Host ""
 }
 
@@ -213,3 +214,4 @@ if (Test-Path $historyPath) {
 # ✅ Final Message
 Write-Host "`nDeployment complete. Welcome to SHEIKLAB." -ForegroundColor Cyan
 Pause
+
