@@ -7,7 +7,7 @@
 #>
 
 # 🖥️ Branding Banner
-$host.UI.RawUI.WindowTitle = "Teknarch Endpoint Deployment — Powered by SHEIKLAB"
+$host.UI.RawUI.WindowTitle = "Endpoint Deployment — Powered by SHEIKLAB"
 Write-Host "=======================================================================" -ForegroundColor Green
 Write-Host "  ######  ##     ## ######## #### ##    ## ##          ###    ########"
 Write-Host " ##    ## ##     ## ##        ##  ##   ##  ##         ## ##   ##     ##"
@@ -24,11 +24,11 @@ Start-Sleep -Seconds 3
 # 📁 Log File Setup
 # $logPath = "$env:TEMP\TeknarchInstallLog.txt"
 # "Teknarch Setup Log - $(Get-Date)" | Out-File $logPath
-$logDir = "C:\TeknarchLog"
+$logDir = "C:\SHEIKLAB"
 $dateTag = Get-Date -Format "yyyyMMdd_HHmmss"
 $logPath = "$logDir\EndpointDeployment_$dateTag.txt"
 New-Item -Path $logDir -ItemType Directory -Force | Out-Null
-"Teknarch Endpoint Deployment Log — $dateTag" | Out-File $logPath
+"SHEIKLAB Endpoint Deployment Log — $dateTag" | Out-File $logPath
 
 # 🧠 System Info
 $sys  = Get-CimInstance -ClassName Win32_ComputerSystem
@@ -114,7 +114,7 @@ $manufacturer = $sys.Manufacturer.Trim()
 Write-Host "Detected OEM: $manufacturer" -ForegroundColor Cyan
 switch -Wildcard ($manufacturer) {
     "*Dell*"     { Install-App "Dell.CommandUpdate" "Dell Command | Update" }
-    "*LENOVO*"   { Install-App "Lenovo.SystemUpdate" "Lenovo System Update"; Install-App "9WZDNCRFJ4MV" "Lenovo Vantage" }
+    "*LENOVO*"   { Install-App "9WZDNCRFJ4MV" "Lenovo Vantage" }
     "*ASUS*"     { Install-App "Asus.ArmouryCrate" "Asus Armoury Crate" }
     "*HP*"       { Install-HPSupportAssistant }
     "*Acer*"     { Install-App "9P8BB54NQNQ4" "Acer Care Center" }
@@ -224,6 +224,7 @@ if (Test-Path $historyPath) {
 # ✅ Final Message
 Write-Host "`nDeployment complete. Welcome to SHEIKLAB." -ForegroundColor Cyan
 Pause
+
 
 
 
