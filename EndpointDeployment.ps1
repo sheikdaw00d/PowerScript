@@ -85,7 +85,7 @@ function Install-HPSupportAssistant {
 }
 
 function Install-AMDAdrenalinDriver {
-    $url = "https://drivers.amd.com/drivers/installer/25.10/whql/amd-software-adrenalin-edition-25.9.1-minimalsetup-250901_web.exe"
+    $url = "https://drivers.amd.com/drivers/installer/25.20/whql/amd-software-adrenalin-edition-25.11.1-minimalsetup-251111_web.exe"
     $exe = "$env:TEMP\amd-adrenalin-setup.exe"
     Invoke-WebRequest -Uri $url -OutFile $exe
     Start-Process -FilePath $exe -ArgumentList "/S" -Wait
@@ -157,17 +157,15 @@ $appsPowerbuild = $appsPowerdesk + @(
     @{ Id = "Google.Chrome"; Name = "Google Chrome" },
     @{ Id = "9NKSQGP7F2NH"; Name = "WhatsApp" },
     @{ Id = "Algento.Botim"; Name = "Botim" },
+    @{ Id = "SlackTechnologies.Slack"; Name = "Slack" },
     @{ Id = "Zoom.Zoom"; Name = "Zoom Workplace" },
     @{ Id = "PDFgear.PDFgear"; Name = "PDFgear" },
     @{ Id = "AnyDesk.AnyDesk"; Name = "AnyDesk" },
     @{ Id = "RustDesk.RustDesk"; Name = "RustDesk" },
     @{ Id = "7zip.7zip"; Name = "7-Zip" },
     @{ Id = "JAMSoftware.TreeSize.Free"; Name = "TreeSize Free" }
-
     # @{ Id = "EpicGames.EpicGamesLauncher"; Name = "Epic Games Launcher" },
     # @{ Id = "Discord.Discord"; Name = "Discord" },
-    # @{ Id = "Telegram.TelegramDesktop"; Name = "Telegram Desktop" },
-    # @{ Id = "SlackTechnologies.Slack"; Name = "Slack" },
     # @{ Id = "9WZDNCRFJCTK"; Name = "AutoCAD - DWG Viewer & Editor" },
     # @{ Id = "BlenderFoundation.Blender"; Name = "Blender" },
     # @{ Id = "XPDBVSS44R0L9H"; Name = "Notion" },
@@ -183,6 +181,8 @@ $appsPowerstack = $appsPowerbuild + @(
     @{ Id = "ShareX.ShareX"; Name = "ShareX" },
     @{ Id = "Canva.Canva"; Name = "Canva Desktop" },
     @{ Id = "ByteDance.CapCut"; Name = "CapCut" },
+    @{ Id = "Canva.Affinity"; Name = "Affinity"
+    @{ Id = "Telegram.TelegramDesktop"; Name = "Telegram Desktop" }
     @{ Id = "Google.GoogleDrive"; Name = "Google Drive" }  
 )
 
@@ -224,6 +224,7 @@ if (Test-Path $historyPath) {
 # ✅ Final Message
 Write-Host "`nDeployment complete. Welcome to SHEIKLAB." -ForegroundColor Cyan
 Pause
+
 
 
 
