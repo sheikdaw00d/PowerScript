@@ -26,41 +26,6 @@ Write-Host "WELCOME MR. SHEIK DAWOOD" -ForegroundColor Cyan
 Start-Sleep -Seconds 2
 
 # -----------------------------------------------------
-# ⭐ 100% WORKING PREVIEW PANE ENABLER
-# -----------------------------------------------------
-# Enable Preview Pane in File Explorer via PowerShell
-# This script sets the registry value to show the Preview Pane and refreshes Explorer
-
-try {
-    # Registry path for Explorer's Preview Pane setting
-    $regPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Modules\GlobalSettings\Sizer"
-
-    # Ensure the registry path exists
-    if (-not (Test-Path $regPath)) {
-        New-Item -Path $regPath -Force | Out-Null
-    }
-
-    # Set the Preview Pane to enabled (1 = enabled, 0 = disabled)
-    Set-ItemProperty -Path $regPath -Name "PreviewPaneSizer" -Value ([byte[]](0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00)) -Force
-
-    # Registry key to remember the pane state
-    $statePath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Modules\GlobalSettings\DetailsContainer"
-    if (-not (Test-Path $statePath)) {
-        New-Item -Path $statePath -Force | Out-Null
-    }
-    Set-ItemProperty -Path $statePath -Name "PreviewPane" -Value 1 -Force
-
-    # Restart Explorer to apply changes
-    Stop-Process -Name explorer -Force
-    Start-Process explorer
-
-    Write-Host "✅ Preview Pane has been enabled in File Explorer." -ForegroundColor Green
-}
-catch {
-    Write-Host "❌ Error: $($_.Exception.Message)" -ForegroundColor Red
-}
-
-# -----------------------------------------------------
 # 🔵 UNBLOCK FILES
 # -----------------------------------------------------
 Write-Host "`nUnblocking Files..." -ForegroundColor Yellow
